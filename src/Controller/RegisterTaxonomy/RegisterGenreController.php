@@ -2,13 +2,13 @@
 /**
  * RegisterGenreController.php
  *
- * @package ExampleCorp\Core\Controller
+ * @package MyApp\Core\Controller
  */
 
-namespace ExampleCorp\Core\Controller\RegisterTaxonomy;
+namespace MyApp\Core\Controller\RegisterTaxonomy;
 
-use ExampleCorp\Core\Model\Post\Movie;
-use ExampleCorp\Core\Model\Taxonomy\Genre;
+use MyApp\Core\Model\Post\Movie;
+use MyApp\Core\Model\Taxonomy\Genre;
 
 /**
  * Registers the genre taxonomy.

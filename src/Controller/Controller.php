@@ -2,10 +2,10 @@
 /**
  * Controller.php
  *
- * @package ExampleCorp\Core\Controller
+ * @package MyApp\Core\Controller
  */
 
-namespace ExampleCorp\Core\Controller;
+namespace MyApp\Core\Controller;
 
 /**
  * Provides shared logic used across all controllers.

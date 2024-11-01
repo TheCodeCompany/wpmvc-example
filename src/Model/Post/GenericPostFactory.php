@@ -2,10 +2,10 @@
 /**
  * Generic Post Factory.
  *
- * @package ExampleCorp\Core\Model\Post
+ * @package MyApp\Core\Model\Post
  */
 
-namespace ExampleCorp\Core\Model\Post;
+namespace MyApp\Core\Model\Post;
 
 use WPMVC\Model\GenericPostModelFactory;
 

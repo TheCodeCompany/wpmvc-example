@@ -4,21 +4,21 @@
  * Description: WPMVC plugin for Example Corp.
  * Version:     1.0.0-alpha
  *
- * @package ExampleCorp
+ * @package MyApp
  */
 
-namespace ExampleCorp;
+namespace MyApp;
 
 use WPMVC\Core\Application;
-use ExampleCorp\Core\Controller\RegisterPostType\RegisterMovieController;
-use ExampleCorp\Core\Controller\RegisterTaxonomy\RegisterGenreController;
+use MyApp\Core\Controller\RegisterPostType\RegisterMovieController;
+use MyApp\Core\Controller\RegisterTaxonomy\RegisterGenreController;
 
 if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 
-	define( 'ExampleCorp\APP_NAME', 'example-corp' );
+	define( 'MyApp\APP_NAME', 'example-corp' );
 
-	$example_corp_app = new Application(
+	$my_app = new Application(
 		APP_NAME,  // The application name / slug.
 		__DIR__,  // The application root directory.
 		[  // The application controllers

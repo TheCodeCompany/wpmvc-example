@@ -7,9 +7,38 @@ Maintained by: [The Code Company](https://thecode.co)
 > [!IMPORTANT]  
 > WPMVC is currently in alpha, as such there may be breaking changes introduced on our path to beta/v1.0. While we hope you will find the package useful in its current state you're using it at your own risk.
 
+## Index
+
+- [WPMVC Example Plugin](#wpmvc-example-plugin)
+	- [Index](#index)
+	- [Overview](#overview)
+	- [Getting Started](#getting-started)
+		- [Requirements](#requirements)
+		- [Installation](#installation)
+			- [Step 1](#step-1)
+			- [Step 2](#step-2)
+			- [Step 3](#step-3)
+			- [Step 4](#step-4)
+			- [Step 5](#step-5)
+	- [Customise](#customise)
+	- [Creating a controller](#creating-a-controller)
+	- [Registering a controller](#registering-a-controller)
+	- [Creating custom post types](#creating-custom-post-types)
+		- [Step 1 - Create the model](#step-1---create-the-model)
+		- [Step 2 - Create the registration controller](#step-2---create-the-registration-controller)
+		- [Step 3 - Register the controller](#step-3---register-the-controller)
+	- [Creating custom taxonomies](#creating-custom-taxonomies)
+		- [Step 1 - Create the model](#step-1---create-the-model-1)
+		- [Step 2 - Create the registration controller](#step-2---create-the-registration-controller-1)
+			- [Relationship with post type(s)](#relationship-with-post-types)
+			- [Taxonomy registration arguments](#taxonomy-registration-arguments)
+		- [Step 3 - Register the controller](#step-3---register-the-controller-1)
+
 ## Overview
 
 This is an example mu-plugin demonstrating the usage of [WPMVC](https://github.com/TheCodeCompany/wpmvc). It's designed to be downloaded as a zip and used as the basis for your own plugin, rather than cloned or forked (especially while in alpha).
+
+The example plugin comes with some predefined models and controllers that demonstrate some common uses for WPMVC including registering custom post types and taxonomies. Additionally, there are examples of using controllers as the basis for configuration, REST and routing.
 
 ## Getting Started
 
@@ -22,203 +51,133 @@ This is an example mu-plugin demonstrating the usage of [WPMVC](https://github.c
 
 ### Installation
 
-<!-- // Disabled while we complete this distribution configuration
-#### Release Package
-Releases are available from the GitHub repository [github.com/auth0/wordpress/releases](https://github.com/auth0/wordpress/releases), packaged as ZIP archives. Every release has an accompanying signature file for verification if desired.
+#### Step 1
 
-<details>
-<summary><b>Verify a release signature with OpenSSL (recommended)</b></summary>
+As mentioned above, download this project as a zip rather than cloning.
 
-1. Download the public signing key from this repository
-2. Put the repository's public signing key, the release's ZIP archive, and the release's signature file (ending in `.sign`) in the same directory.
-3. Run the following command, substituting `RELEASE` with the filename of the release you downloaded:
+<img src="https://thecodeco.b-cdn.net/wpmvc/download-zip.png" width="300"/>
 
-```bash
-openssl dgst -verify signing.key.pub -keyform PEM -sha256 -signature RELEASE.zip.sign -binary RELEASE.zip
-```
+#### Step 2
 
-'Verified OK' should be returned. If this is not the case, do not proceed with the installation.
-</details>
+Extract the contents of the zip file into your `wp-content/mu-plugins` directory, for our example we will rename the extraced directory `example-corp` - you can use any name you'd like however you'll need to ensure the boot loader path is updated in Step 4.
 
-1. Open your WordPress Dashboard, then click 'Plugins', and then 'Add New'.
-2. Find the 'Upload Plugin' function at the top of the page, and use it to upload the release package you downloaded.
+<img src="https://thecodeco.b-cdn.net/wpmvc/mu-plugin-directory.png" width="200"/>
 
-> **Note** Alternatively, you can extract the release package to your WordPress installation's `wp-content/plugins` directory.
--->
+#### Step 3
+Move the `mu-boot-example.php` file into your wp-content/mu-plugins directory, ensure the path in this file is accurate as mentioned in Step 2. You can rename `mu-boot-example.php` to anything you'd like.
 
-#### Composer
+<img src="https://thecodeco.b-cdn.net/wpmvc/boot-file.png" width="500"/>
 
-The plugin supports installation through [Composer](https://getcomposer.org/), and is [WPackagist](https://wpackagist.org/) compatible. This approach is preferred when using [Bedrock](https://roots.io/bedrock/), but will work with virtually any WordPress installation.
-
-For [Bedrock](https://roots.io/bedrock/) installations, you'll usually run this command from the root WordPress installation directory, but check the documentation the project's maintainers provide for the best guidance.
-
-For standard WordPress installations, this command can be run from the `wp-content/plugins` sub-directory.
+#### Step 4
+Open the plugin directory in your terminal and run composer install, this will install WPMVC as a dependency and allow the example application to function.
 
 ```
-composer require symfony/http-client nyholm/psr7 auth0/wordpress:^5.0
+composer install --ignore-platform-reqs
 ```
 
-<p><details>
-<summary><b>Note on Composer Dependencies</b></summary>
+#### Step 5
+At this point you can log into wp-admin and verify that the mu-plugin is active and the example post type and taxonomy have been registered.
 
-When installed with Composer, the plugin depends on the presence of [PSR-18](https://packagist.org/providers/psr/http-client-implementation) and [PSR-17](https://packagist.org/providers/psr/http-factory-implementation) library implementations. The `require` command above includes two such libraries (`symfony/http-client` and `nyholm/psr7`) that satisfy these requirements, but you can use any other compatible libraries that you prefer. Visit Packagist for a list of [PSR-18](https://packagist.org/providers/psr/http-client-implementation) and [PSR-17](https://packagist.org/providers/psr/http-factory-implementation) providers.
+<img src="https://thecodeco.b-cdn.net/wpmvc/post-type.png" width="500"/>
 
-If you are using Bedrock or another Composer-based configuration, you can try installing `auth0/wordpress` without any other dependencies, as the implementations may be satisfied by other already installed packages.
+You can use these example controllers/models as the basis for your own, in the future we will be introducing a scaffolding system to generate these via the cli.
 
-> **Note** PHP Standards Recommendations (PSRs) are standards for PHP libraries and applications that enable greater interoperability and choice. You can learn more about them and the PHP-FIG organization that maintains them [here](https://www.php-fig.org/).
+> [!WARNING]  
+> If you can't see the example post type (Movies) or taxonomy (Genres) or are receiving an error when registering the mu-plugin, ensure that the path in your boot file is accurate and that you've run composer install from Step 4.
 
-</details></p>
+## Customise
+Assuming you'll want to customise the mu-plugin and provide your own package names, namespaces etc. the first step is to perform a search/replace within the mu-plugin directory, you'll want to update all occurances of `ExampleCorp` with your own name e.g. `MyApp`.
 
-<!-- // Disabled while we complete this distribution configuration
-#### WordPress Dashboard
+Once you've performed this replacement, which will also update the PSR-4 autoload namespace in your composer.json file, you will need to run the following command:
 
-> [!CAUTION]
-> We recommend against using the WordPress Dashboard or Marketplace to install or update the plugin. Automattic does not implement reliable security measures to protect plugins from tampering, and this approach presents a supply chain risk. It is not recommended for production sites.
-
-Installation from your WordPress dashboard is supported. This approach first installs a small setup script that will verify that your host environment is compatible. Afterward, the latest plugin release will be downloaded from the GitHub repository, have its file signature verified, and ultimately installed.
-
-- Open your WordPress Dashboard.
-- Click 'Plugins", then 'Add New,' and search for 'Auth0'.
-- Choose 'Install Now' to install the plugin.
--->
-
-### Activation
-
-After installation, you must activate the plugin within your WordPress site:
-
-1. Open your WordPress Dashboard.
-2. Select 'Plugins' from the sidebar, and then 'Installed Plugins.'
-3. Choose 'Activate' underneath the plugin's name.
-
-### Configure Auth0
-
-1. Sign into Auth0. If you don't have an account, [it's free to create one](https://auth0.com/signup).
-2. [Open 'Applications' from your Auth0 Dashboard](https://manage.auth0.com/#/applications/create), and select 'Create Application.'
-3. Choose 'Regular Web Application' and then 'Create.'
-4. From the newly created application's page, select the Settings tab.
-
-Please prepare the following information:
-
-- Note the **Domain**, **Client ID**, and **Client Secret**, available from the newly created Application's Settings page. You will need these to configure the plugin in the next step.
-- From your WordPress Dashboard's General Settings page, note your **WordPress Address** and **Site Address** URLs. We recommend you read our guidance on [common WordPress URL issues](#common-wordpress-url-issues).
-
-Continue configuring your Auth0 application from its Settings page:
-
-- **Allowed Callback URLs** should include the URL to your WordPress site's `wp-login.php`.
-  - In most (but not all) cases, this will be your WordPress Address with `/wp-login.php` appended.
-  - Please ensure your site is configured never to cache this URL, or you may see an "invalid state" error during login.
-- **Allowed Web Origins** should include both your WordPress Address and Site Address URLs.
-- **Allowed Logout URLs** should consist of your WordPress Address.
-
-<p><details id="common-wordpress-url-issues">
-<summary><b>Common WordPress URL Issues</b></summary>
-
-- These must be the URLs your visitors will use to access your WordPress site. If you are using a reverse proxy, you may need to manually configure your WordPress Address and Site Address URLs to match the URL you use to access your site.
-- Make sure these URLs match your site's configured protocol. When using a reverse proxy, you may need to update these to reflect serving over SSL/HTTPS.
-</details></p>
-
-<p><details>
-<summary><b>Troubleshooting</b></summary>
-
-If you're encountering issues, start by checking that your Auth0 Application is setup like so:
-
-- **Application Type** must be set to **Regular Web Application**.
-- **Token Endpoint Authentication Method** must be set to **Post**.
-- **Allowed Origins (CORS)** should be blank.
-
-Scroll down and expand the "Advanced Settings" panel, then:
-
-- Under **OAuth**:
-  - Ensure that **JsonWebToken Signature Algorithm** is set to **RS256**.
-  - Check that **OIDC Conformant** is enabled.
-- Under **Grant Types**:
-  - Ensure that **Implicit**, **Authorization Code**, and **Client Credentials** are enabled.
-  - You may also want to enable **Refresh Token**.
-
-</details></p>
-
-### Configure the Plugin
-
-Upon activating the Auth0 plugin, you will find a new "Auth0" section in the sidebar of your WordPress Dashboard. This section enables you to configure the plugin in a variety of ways.
-
-For the plugin to operate, at a minimum, you will need to configure the Domain, Client ID, and Client Secret fields. These are available from the Auth0 Application you created in the previous step. Once configured, select the "Enable Authentication" option to have the plugin begin handling authentication for you.
-
-We recommend testing on a staging/development site using a separate Auth0 Application before putting the plugin live on your production site.
-
-### Configure WordPress
-
-#### Plugin Database Tables
-
-The plugin uses dedicated database tables to guarantee high performance. When the plugin is activated, it will use the database credentials you have configured for WordPress to create these tables.
-
-Please ensure your configured credentials have appropriate privileges to create new tables.
-
-#### Cron Configuration
-
-The plugin uses WordPress' [background task manager](https://developer.wordpress.org/plugins/cron/) to perform important periodic tasks. Proper synchronization between WordPress and Auth0 relies on this.
-
-By default, WordPress' task manager runs on every page load, which is inadvisable for production sites. For best performance and reliability, please ensure you have configured WordPress to use a [cron job](https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/) to run these tasks periodically instead.
-
-## SDK Usage
-
-The plugin is built on top of [Auth0-PHP](https://github.com/auth0/auth0-PHP) — Auth0's full-featured PHP SDK for Authentication and Management APIs.
-
-For custom WordPress development, please do not extend the plugin's classes themselves, as this is not supported. Nearly all of the plugin's APIs are considered `internal` and will change over time, most likely breaking any custom extension built upon them.
-
-Instead, please take advantage of the full PHP SDK that the plugin is built upon. You can use the plugin's `getSdk()` method to retrieve a configured instance of the SDK, ready for use. This method can be called from the plugin's global `wpAuth0()` helper, which returns the WordPress plugin itself.
-
-```php
-<?php
-
-$plugin = wpAuth0(); // Returns an instanceof Auth0\WordPress\Plugin
-   $sdk = wpAuth0()->getSdk(); // Returns an instanceof Auth0\SDK\Auth0
+```
+composer dump-autoload
 ```
 
-Please direct questions about developing with the Auth0-PHP SDK to the [Auth0 Community](https://community.auth0.com), and issues or feature requests to [it's respective repository](https://github.com/auth0/auth0-PHP). Documentations and examples on working with the Auth0-PHP SDKs are also available from [its repository](https://github.com/auth0/auth0-PHP).
+Lastly you can modify the composer.json name and description to your liking, as well as the plugin declaration comment in the `boot.php` file.
 
-## Support Policy
+## Creating a controller
 
-- Our PHP version support window mirrors the [PHP release support schedule](https://www.php.net/supported-versions.php). Our support for PHP versions ends when they stop receiving security fixes.
-- As Automattic's stated policy is "security patches are backported when possible, but this is not guaranteed," we only support [the latest release](https://wordpress.org/news/category/releases/) marked as ["actively supported"](https://endoflife.date/wordpress) by Automattic.
+Controllers in WPMVC are very flexible and serve multiple purposes, from more traditional use cases such as regiering routes or REST endpoints to more WordPress-specific uses such as mounting application code into WordPress via hooks using the `set_up()` method. There are a number of examples provided with this plugin that you can use as the basis for your controllers which are detailed below:
 
-| Plugin Version | WordPress Version | PHP Version | Support Ends |
-| -------------- | ----------------- | ----------- | ------------ |
-| 5              | 6                 | 8.3         | Nov 2026     |
-|                |                   | 8.2         | Dec 2025     |
-|                |                   | 8.1         | Nov 2024     |
+`ExampleConfigController.php`
 
-Composer and WordPress do not offer upgrades to incompatible versions. Therefore, we regularly deprecate support within the plugin for PHP or WordPress versions that have reached end-of-life. These deprecations are not considered breaking changes and will not result in a major version bump.
+This example demonstrates the usage of WPMVC's configuration system. It registers a custom route that maps to a method `route_example_config()` which demonstrates retrieving environment-specific configuration variables.
 
-Sites running unsupported versions of PHP or WordPress will continue to function but will not receive updates until their environment is upgraded. For your security, please ensure your PHP runtime and WordPress remain up to date.
+<img src="https://thecodeco.b-cdn.net/wpmvc/config.png" width="700"/>
 
-## Feedback
+WPMVC uses a constant `WP_ENV` which you can define in your `wp-config.php` file, you may use this to handle loading environment-specific configuration. The environment constant options the example plugin uses are `local`, `staging` and `production`. E.g.
 
-### Contributing
+```
+define( 'WP_ENV', 'local' );
+```
 
-We appreciate feedback and contribution to this repo! Before you get started, please see the following:
+`ExampleRESTController.php`
 
-- [Auth0's general contribution guidelines](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md)
-- [Auth0's code of conduct guidelines](https://github.com/auth0/open-source-template/blob/master/CODE-OF-CONDUCT.md)
+The example REST controller demonstrates how to create a custom REST endpoint using the WordPress REST system. This is a simple system that mounts on the `plugins_loaded` hook via the `set_up()` method that all controllers inherit. You may use the same arguments when registering your endpoint as can be found [in the WordPress codex](https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/).
 
-### Raise an issue
+<img src="https://thecodeco.b-cdn.net/wpmvc/rest.png" width="600"/>
 
-To provide feedback or report a bug, [please raise an issue on our issue tracker](https://github.com/auth0/wp-auth0/issues).
+`ExampleRouteController.php`
 
-### Vulnerability Reporting
+The example Route controller demonstrates two pieces of functionality, first the ability to register custom routes within WPMVC that you can bind to a method within your controller. The second is WPMVC's lightweight theme/templating system which can be used to create and render templates. Routes are registered within WPMVC, not as rewrite rules, this happens during the `do_parse_request` action.
 
-Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
+<img src="https://thecodeco.b-cdn.net/wpmvc/route.png" width="500"/>
 
----
+## Registering a controller
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: light)" srcset="https://cdn.auth0.com/website/sdks/logos/auth0_light_mode.png" width="150">
-    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.auth0.com/website/sdks/logos/auth0_dark_mode.png" width="150">
-    <img alt="Auth0 Logo" src="https://cdn.auth0.com/website/sdks/logos/auth0_light_mode.png" width="150">
-  </picture>
-</p>
+Controllers do nothing on their own, you will need to register them within the WPMVC application via the `boot.php` file in your plugin root. This example plugin has a handful of pre-registered controllers that take care of the registration of the example `Movie` post type and `Genre` taxonomy - you can intialiase your new controllers within the array pictured below.
 
-<p align="center">Auth0 is an easy-to-implement, adaptable authentication and authorization platform.<br />
-To learn more checkout <a href="https://auth0.com/why-auth0">Why Auth0?</a></p>
+<img src="https://thecodeco.b-cdn.net/wpmvc/application.png" width="400"/>
 
-<p align="center">This project is licensed under the MIT license. See the <a href="./LICENSE"> LICENSE</a> file for more info.</p>
+Any class instance you provide within this array will have its `set_up()` method called when WordPress initiliases, this is a required method and how your controller "hooks in" to WordPress.
+
+## Creating custom post types
+
+Creating custom post types with WPMVC requires three steps, first creating a model that represents the custom post type and then creating a controller to register it with WordPress.
+
+### Step 1 - Create the model
+
+Custom post type models are extended from the `GenericPost` model, this provides some post-specific methods that can be quite useful when creating, modifying or iterating over posts within WPMVC. You can simply provide the post type name as pictured below and the rest of the configuration happens within the registration controller.
+
+<img src="https://thecodeco.b-cdn.net/wpmvc/post-model.png" width="500"/>
+
+### Step 2 - Create the registration controller
+
+Using the `RegisterMovieController` example, we can see that we're using the post model from the previous step as a reference on line 23 and defining our labeling with `get_label_singular()`, `get_label_plural()` and `get_post_type_args_labels()` methods. This is a fairly manual process, as best practices dictate to not use variables within translation functions.
+
+The registration itself happens within the `get_register_post_type_args()` method, you may use the [register_post_type()](https://developer.wordpress.org/reference/functions/register_post_type/) docs as a reference for the arguments that get passed to WordPress via this method.
+
+<img src="https://thecodeco.b-cdn.net/wpmvc/post-type-args.png" width="700"/>
+
+### Step 3 - Register the controller
+
+As per the "Registering a controller" section above, you must include and initialise your controller in the `boot.php` file.
+
+
+## Creating custom taxonomies
+
+Similarly to custom post types, creating a custom taxonomy requires three steps.
+
+### Step 1 - Create the model
+
+As opposed to post models, taxonomy models are extended from `TaxonomyTermModel`. They also require a single constant, the name of the taxonomy
+
+<img src="https://thecodeco.b-cdn.net/wpmvc/taxonomy-model.png" width="500"/>
+
+### Step 2 - Create the registration controller
+
+This process is very similar to registering a custom post type, with two primary differences.
+
+#### Relationship with post type(s)
+
+The `get_taxonomy_object_types()` method is used to define which post types this taxonomy is related to, in our example you can see the inverse relationship between Movies and Genres is defined here. You may add as many post type references to this method as you'd like.
+
+<img src="https://thecodeco.b-cdn.net/wpmvc/taxonomy-register.png" width="500"/>
+
+#### Taxonomy registration arguments
+The arguments used in the `get_taxonomy_args()` method are the same as the arguments used for the [register_taxonomy()](https://developer.wordpress.org/reference/functions/register_taxonomy/) function. 
+
+### Step 3 - Register the controller
+
+As per the "Registering a controller" section above, you must include and initialise your controller in the `boot.php` file.

@@ -2,15 +2,15 @@
 /**
  * Post.php
  *
- * @package ExampleCorp\Core\Model\Post
+ * @package MyApp\Core\Model\Post
  */
 
-namespace ExampleCorp\Core\Model\Post;
+namespace MyApp\Core\Model\Post;
 
 /**
  * Generic Post CPT.
  *
- * @package ExampleCorp\Core\Model\Post
+ * @package MyApp\Core\Model\Post
  */
 class Post extends GenericPost {
 

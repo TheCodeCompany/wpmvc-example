@@ -2,12 +2,12 @@
 /**
  * RegisterMovieController.php
  *
- * @package ExampleCorp\Core\Controller
+ * @package MyApp\Core\Controller
  */
 
-namespace ExampleCorp\Core\Controller\RegisterPostType;
+namespace MyApp\Core\Controller\RegisterPostType;
 
-use ExampleCorp\Core\Model\Post\Movie;
+use MyApp\Core\Model\Post\Movie;
 
 /**
  * Registers the Movie post type.

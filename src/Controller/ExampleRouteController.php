@@ -2,10 +2,10 @@
 /**
  * Example REST endpoints.
  *
- * @package ExampleCorp\Core\Controller
+ * @package MyApp\Core\Controller
  */
 
-namespace ExampleCorp\Core\Controller;
+namespace MyApp\Core\Controller;
 
 use WPMVC\Core\Controller;
 use WPMVC\View\ThemeableView;

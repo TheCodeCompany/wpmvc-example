@@ -2,10 +2,10 @@
 /**
  * Example REST endpoints.
  *
- * @package ExampleCorp\Core\Controller
+ * @package MyApp\Core\Controller
  */
 
-namespace ExampleCorp\Core\Controller;
+namespace MyApp\Core\Controller;
 
 use WPMVC\Core\Controller;
 
@@ -26,7 +26,7 @@ class ExampleRESTController extends Controller {
 
 		$this->rest->endpoint(
 			[
-				'namespace'           => 'example',  // TODO automate this pls.
+				'namespace'           => 'example',
 				'action'              => 'example/(?P<id>\d+)',
 				'method'              => [ \WP_REST_Server::READABLE ],
 				'callback'            => [ $this, 'rest_example' ],

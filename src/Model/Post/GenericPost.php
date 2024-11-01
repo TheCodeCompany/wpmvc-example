@@ -2,10 +2,10 @@
 /**
  * GenericPost.php
  *
- * @package ExampleCorp\Core\Model\Post
+ * @package MyApp\Core\Model\Post
  */
 
-namespace ExampleCorp\Core\Model\Post;
+namespace MyApp\Core\Model\Post;
 
 use WPMVC\Model\GenericPostModel;
 
@@ -13,7 +13,7 @@ use WPMVC\Model\GenericPostModel;
  * Generic post (of any type) used. Holds common logic shared between all post
  * types.
  *
- * @package ExampleCorp\Core\Model\Post
+ * @package MyApp\Core\Model\Post
  */
 class GenericPost extends GenericPostModel {
 

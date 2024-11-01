@@ -2,12 +2,12 @@
 /**
  * RegisterPostTypeController.php
  *
- * @package ExampleCorp\Core\Controller
+ * @package MyApp\Core\Controller
  */
 
-namespace ExampleCorp\Core\Controller\RegisterPostType;
+namespace MyApp\Core\Controller\RegisterPostType;
 
-use ExampleCorp\Core\Controller\Controller;
+use MyApp\Core\Controller\Controller;
 
 /**
  * Base foundation for registering and managing a post type.

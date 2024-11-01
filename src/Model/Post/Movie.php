@@ -2,10 +2,10 @@
 /**
  * Movie.php
  *
- * @package ExampleCorp\Core\Model\Post
+ * @package MyApp\Core\Model\Post
  */
 
-namespace ExampleCorp\Core\Model\Post;
+namespace MyApp\Core\Model\Post;
 
 /**
  * A movie post type.

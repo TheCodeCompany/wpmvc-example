@@ -2,12 +2,12 @@
 /**
  * RegisterTaxonomyController.php
  *
- * @package ExampleCorp\Core\Controller
+ * @package MyApp\Core\Controller
  */
 
-namespace ExampleCorp\Core\Controller\RegisterTaxonomy;
+namespace MyApp\Core\Controller\RegisterTaxonomy;
 
-use ExampleCorp\Core\Controller\Controller;
+use MyApp\Core\Controller\Controller;
 
 /**
  * Base foundation for registering a taxonomy.

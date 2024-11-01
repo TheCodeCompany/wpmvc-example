@@ -2,10 +2,10 @@
 /**
  * Tag.php
  *
- * @package ExampleCorp\Core\Model\Taxonomy
+ * @package MyApp\Core\Model\Taxonomy
  */
 
-namespace ExampleCorp\Core\Model\Taxonomy;
+namespace MyApp\Core\Model\Taxonomy;
 
 use WPMVC\Model\TaxonomyTermModel;
 

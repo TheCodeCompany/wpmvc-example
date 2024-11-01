@@ -18,7 +18,7 @@
 			"src/Function/autoload.php"
 		],
 		"psr-4": {
-			"ExampleCorp\\Core\\": "src/"
+			"MyApp\\Core\\": "src/"
 		}
 	}
 }

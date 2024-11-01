@@ -2,10 +2,10 @@
 /**
  * Config functions.
  *
- * @package ExampleCorp\Core\Function
+ * @package MyApp\Core\Function
  */
 
-namespace ExampleCorp\Core;
+namespace MyApp\Core;
 
 use WPMVC\Library\Config;
 
