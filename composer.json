@@ -1,0 +1,24 @@
+{
+	"name": "thecodeco/example-corp",
+	"description": "WPMVC Example Corp",
+	"version": "1.0.0",
+	"repositories": [
+		{
+			"type": "vcs",
+			"name": "thecodeco/wpmvc",
+			"url": "https://bitbucket.org/thecodeco/wpmvc.git"
+		}
+	],
+	"require": {
+		"php": ">=8.0.0",
+		"thecodeco/wpmvc": "dev-master"
+	},
+	"autoload": {
+		"files": [
+			"src/Function/autoload.php"
+		],
+		"psr-4": {
+			"ExampleCorp\\Core\\": "src/"
+		}
+	}
+}

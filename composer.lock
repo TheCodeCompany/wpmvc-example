@@ -1,0 +1,59 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "cc48ac367f6d24b39d6d55b2e62a203d",
+    "packages": [
+        {
+            "name": "thecodeco/wpmvc",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/thecodeco/wpmvc.git",
+                "reference": "062ecc71e032b13593b00cc19a9dff9cc4cb16b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/thecodeco/wpmvc/get/062ecc71e032b13593b00cc19a9dff9cc4cb16b4.zip",
+                "reference": "062ecc71e032b13593b00cc19a9dff9cc4cb16b4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WPMVC\\": "source/"
+                }
+            },
+            "archive": {
+                "exclude": [
+                    ".gitignore"
+                ]
+            },
+            "description": "MVC framework for WordPress",
+            "homepage": "https://bitbucket.org/thecodeco/wpmvc",
+            "support": {
+                "source": "https://bitbucket.org/thecodeco/wpmvc/src/062ecc71e032b13593b00cc19a9dff9cc4cb16b4/?at=feature/wpmvcs"
+            },
+            "time": "2022-10-25T02:02:25+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "thecodeco/wpmvc": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=8.0.0"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}
