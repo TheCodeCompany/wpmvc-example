@@ -33,6 +33,7 @@ Maintained by: [The Code Company](https://thecode.co)
 			- [Relationship with post type(s)](#relationship-with-post-types)
 			- [Taxonomy registration arguments](#taxonomy-registration-arguments)
 		- [Step 3 - Register the controller](#step-3---register-the-controller-1)
+	- [Contributing](#contributing)
 
 ## Overview
 
@@ -181,3 +182,7 @@ The arguments used in the `get_taxonomy_args()` method are the same as the argum
 ### Step 3 - Register the controller
 
 As per the "Registering a controller" section above, you must include and initialise your controller in the `boot.php` file.
+
+## Contributing
+
+[WPMVC](https://github.com/TheCodeCompany/wpmvc) is maintained by [The Code Company](https://thecode.co/), while we appreciate feedback and will endeavour to action requests for features/bug fixes this repository is not open to outside contribution at this time. You are, however, free to fork and use WPMVC in any way you see fit as per the ISC license.
