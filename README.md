@@ -183,6 +183,24 @@ The arguments used in the `get_taxonomy_args()` method are the same as the argum
 
 As per the "Registering a controller" section above, you must include and initialise your controller in the `boot.php` file.
 
+## Creating custom WP CLI commands
+
+If you need some functionality that needs to be in the WP CLI, here are the steps to add it.
+
+### Step 1 - Add wp cli composer dependencies
+
+In the composer.json file inside `require`, add `"wp-cli/wp-cli": "dev-main"` then run `composer update`.
+
+### Step 2 - Include wp cli in the boot.php
+
+In your boot.php
+- Add/Uncomment `use function MyApp\Core\is_wp_cli;`
+- Add your WP CLI Controller at the top of the file file eg: `MyApp\Core\Controller\ExampleWpCliController;`
+- Inside the conditional `if ( php_sapi_name() == 'cli' ) { } `, add the wp cli instances. This will make sure that those functions will run only within WP CLI.
+
+### Step 3 - 
+- Add your WP cli commands, see `ExampleWpCliController.php`
+
 ## Contributing
 
 [WPMVC](https://github.com/TheCodeCompany/wpmvc) is maintained by [The Code Company](https://thecode.co/), while we appreciate feedback and will endeavour to action requests for features/bug fixes this repository is not open to outside contribution at this time. You are, however, free to fork and use WPMVC in any way you see fit as per the ISC license.
