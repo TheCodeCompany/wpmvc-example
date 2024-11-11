@@ -6,12 +6,12 @@
 		{
 			"type": "vcs",
 			"name": "thecodeco/wpmvc",
-			"url": "https://bitbucket.org/thecodeco/wpmvc.git"
+			"url": "https://github.com/TheCodeCompany/wpmvc.git"
 		}
 	],
 	"require": {
 		"php": ">=8.0.0",
-		"thecodeco/wpmvc": "dev-master"
+		"thecodeco/wpmvc": "dev-main"
 	},
 	"autoload": {
 		"files": [
