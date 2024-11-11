@@ -10,6 +10,12 @@ read -p "Enter the project name: " project_name
 project_name_safe=$(echo "$project_name" | tr -cs '[:alnum:]' '-')
 project_name_safe=$(echo "$project_name_safe" | sed 's/-$//')
 
+# add a check if the current folder is in the mu-plugins folder
+if [ ! -d "wpmvc-example" ]; then
+  echo "The script must be run from the 'wpmvc-example' folder in the 'mu-plugins' directory."
+  exit 1
+fi
+
 # Convert sanitized project name to lowercase for file name replacements
 project_name_safe_lowercase=$(echo "$project_name_safe" | tr '[:upper:]' '[:lower:]')
 
