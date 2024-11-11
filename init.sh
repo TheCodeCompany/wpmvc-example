@@ -85,4 +85,7 @@ else
   echo "An error occurred. The script will not be deleted."
 fi
 
+# make sure you land in the current folder after the script is executed
+cd "$(dirname "$(pwd)")/$project_name_safe_lowercase"
+
 echo "All occurrences of 'example-corp' have been replaced with '$project_name_safe_lowercase' in file contents (lowercase, dashes), and 'Example Corp' with '$project_name' (case preserved), excluding init.sh. Also, file names have been updated excluding init.sh, the folder has been renamed, 'composer install', 'composer update', 'composer dump-autoload' executed, and the README.md file has been updated."
