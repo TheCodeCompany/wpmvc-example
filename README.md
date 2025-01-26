@@ -87,7 +87,7 @@ You can use these example controllers/models as the basis for your own, in the f
 > If you can't see the example post type (Movies) or taxonomy (Genres) or are receiving an error when registering the mu-plugin, ensure that the path in your boot file is accurate and that you've run composer install from Step 4.
 
 ## Customise
-Assuming you'll want to customise the mu-plugin and provide your own package names, namespaces etc. the first step is to perform a search/replace within the mu-plugin directory, you'll want to update all occurances of `ExampleCorp` with your own name e.g. `MyApp`.
+Assuming you'll want to customise the mu-plugin and provide your own package names, namespaces etc. the first step is to perform a search/replace within the mu-plugin directory, you'll want to update all occurances of `ExampleCorp`, `example-corp` and `Example Corp` with your own name e.g. `MyApp`, `my-app` and `My App`.
 
 Once you've performed this replacement, which will also update the PSR-4 autoload namespace in your composer.json file, you will need to run the following command:
 
